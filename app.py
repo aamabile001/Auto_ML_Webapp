@@ -5,6 +5,7 @@ Created on Sat Oct 29 08:29:33 2022
 @author: Tony
 """
 
+
 import streamlit as st
 import pandas as pd
 import os
@@ -31,8 +32,7 @@ if os.path.exists('sourcedata.csv'):
 
 if choice == 'Upload':
     st.title('Upload your data for Modelling!')
-    file = st.file_uploader('Upload your dataset here:')
-    if file:
+    if file := st.file_uploader('Upload your dataset here:'):
         df = pd.read_csv(file, index_col=None)
         df.to_csv('Sourcedata.csv', index=None)
         st.dataframe(df)
@@ -42,7 +42,7 @@ if choice == 'Profiling':
     st.title('Automated Exploratory Data Analysis')
     profile_report = df.profile_report()
     st_profile_report(profile_report)
-   
+
 
 if choice == 'ML':
     st.title("Machine Learning :-)")
